@@ -1,0 +1,399 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="智遊發揮，一款由順興社區開發的遊戲，集結了社區居民的智慧，共同運用創意製作的桌上遊戲">
+        <meta name="keywords" content="順興, 社區, 順興社區, 遊戲, 桌遊, 桌上遊戲, 智遊發揮">
+        <meta property="og:title" content="順興社區 智遊發揮" />
+        <meta property="og:image" content="./img/logo.png" />
+        <meta property="og:description" content="智遊發揮，一款由順興社區開發的遊戲，集結了社區居民的智慧，共同運用創意製作的桌上遊戲" />
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-status-bar-style" content="black">
+        <meta name="format-detection" content="telephone=no">
+        <link rel="shortcut icon" href="./img/util/logo.png">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400&display=swap" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" integrity="sha512-aOG0c6nPNzGk+5zjwyJaoRUgCdOrfSDhmMID2u4+OIslr0GjpLKo7Xm0Ao3xmpM4T8AmIouRkqwj1nrdVsLKEQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="./style.css">
+        <link rel="stylesheet" href="./rwd.css">
+        <title>智遊發揮 | 順興社區</title>
+    </head>
+    <body>
+        <div class="landing-container">
+            <div class="landing-card-block">
+                <img src="./img/card/attraction/attraction-blank.png" class="block-card">
+                <img src="./img/card/share/share-blank.png" class="block-card">
+                <img src="./img/card/think/think-blank.png" class="block-card">
+                <img src="./img/card/obstacle/obstacle-blank.png" class="block-card">
+                <img src="./img/card/heart/heart-blank.png" class="block-card">
+            </div>
+            <div class="landing-wheel-block">
+                <img src="./img/util/wheel.png" alt="wheel" class="spin-wheel">
+            </div>
+            <div class="landing-bg-line">
+                <img src="./img/illustration/flower.svg" class="flower">
+                <img src="./img/illustration/hill.svg" class="hill">
+                <img src="./img/util/title.png" class="title">
+                </div>
+            </div>
+            <div class="start-puzzle-btn" id="start-puzzle-btn">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="50" d="M413.66 246.1H386a2 2 0 01-2-2v-77.24A38.86 38.86 0 00345.14 128H267.9a2 2 0 01-2-2V98.34c0-27.14-21.5-49.86-48.64-50.33a49.53 49.53 0 00-50.4 49.51V126a2 2 0 01-2 2H87.62A39.74 39.74 0 0048 167.62V238a2 2 0 002 2h26.91c29.37 0 53.68 25.48 54.09 54.85.42 29.87-23.51 57.15-53.29 57.15H50a2 2 0 00-2 2v70.38A39.74 39.74 0 0087.62 464H158a2 2 0 002-2v-20.93c0-30.28 24.75-56.35 55-57.06 30.1-.7 57 20.31 57 50.28V462a2 2 0 002 2h71.14A38.86 38.86 0 00384 425.14v-78a2 2 0 012-2h28.48c27.63 0 49.52-22.67 49.52-50.4s-23.2-48.64-50.34-48.64z"/>
+                </svg>
+                <p>拼圖</p>
+            </div>
+            <div class="data-section hide-el">
+                <span id="time">時間 | 00 : 00 : 00</span>
+                <button type="button" class="puzzle-btn" id="pic-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="45">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M4.828 21l-.02.02-.021-.02H2.992A.993.993 0 0 1 2 20.007V3.993A1 1 0 0 1 2.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 0 1-.992.993H4.828zM20 15V5H4v14L14 9l6 6zm0 2.828l-6-6L6.828 19H20v-1.172zM8 11a2 2 0 1 1 0-4 2 2 0 0 1 0 4z" fill="rgba(71,46,117,1)"/>
+                    </svg>
+                </button>
+                <div class="pic-show hide-el" id="pic-show"></div>
+                <button type="button" class="puzzle-btn" id="start-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="45">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M16.394 12L10 7.737v8.526L16.394 12zm2.982.416L8.777 19.482A.5.5 0 0 1 8 19.066V4.934a.5.5 0 0 1 .777-.416l10.599 7.066a.5.5 0 0 1 0 .832z" fill="rgba(71,46,117,1)"/>
+                    </svg>
+                </button>
+                <button type="button" class="puzzle-btn hide-el" id="reset-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="45">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M18.537 19.567A9.961 9.961 0 0 1 12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10c0 2.136-.67 4.116-1.81 5.74L17 12h3a8 8 0 1 0-2.46 5.772l.997 1.795z" fill="rgba(71,46,117,1)"/>
+                    </svg>
+                </button>
+                <button type="button" class="puzzle-btn" id="home-btn">
+                    <svg viewBox="0 0 24 24" width="24" height="45">
+                        <path fill="none" d="M0 0h24v24H0z"/>
+                        <path d="M19 21H5a1 1 0 0 1-1-1v-9H1l10.327-9.388a1 1 0 0 1 1.346 0L23 11h-3v9a1 1 0 0 1-1 1zM6 19h12V9.157l-6-5.454-6 5.454V19z" fill="rgba(71,46,117,1)"/>
+                    </svg>
+                </button>
+            </div>
+            <div class="tutorial-section hide-el">
+                <div class="tutorial-list">
+                    <h1>1. 點選開始以開始遊戲</h1>
+                    <img src="./img/puzzle/tutorial1.gif" id="t-1">
+                    <img src="./img/puzzle/tutorial2.gif" id="t-2" class="hide-el">
+                    <img src="./img/puzzle/tutorial3.gif" id="t-3" class="hide-el">
+                    <img src="./img/puzzle/tutorial4.gif" id="t-4" class="hide-el">
+                    <img src="./img/puzzle/tutorial5.gif" id="t-5" class="hide-el">
+                    <button class="tutorial-btn" id="t-6">關閉</button>
+                    <div class="tutorial-pag-block">
+                        <span class="tutorial-pag"></span>
+                        <span class="tutorial-pag"></span>
+                        <span class="tutorial-pag"></span>
+                        <span class="tutorial-pag"></span>
+                        <span class="tutorial-pag"></span>
+                    </div>
+                    <button class="tutorial-btn" id="t-pass">略過</button>
+                </div>
+                <div class="page-btn" id="tutorial-back-btn">
+                    <img src="./img/arrow-left.svg" alt="arrow-left">
+                </div>
+                <div class="page-btn" id="tutorial-next-btn">
+                    <img src="./img/arrow-right.svg" alt="arrow-right">
+                </div>
+            </div>
+            <div class="puzzle-section hide-el">
+                <div class="img-block hide-el" id="img-block"></div>
+                <div class="pieces-block" id="pieces-block">
+                    <p>選擇難易度</p>
+                    <button type="button" class="btn" data-piece="3">簡單</button>
+                    <button type="button" class="btn" data-piece="4">中階</button>
+                    <button type="button" class="btn" data-piece="5">困難</button>
+                    <span class="puzzle-warn hide-el" id="puzzle-select-warn" style="z-index: 650;">請先選擇難度！</span>
+                    <span class="puzzle-warn hide-el" id="puzzle-restart-warn" style="z-index: 650;">請點選重新開始！</span>
+                </div>
+            </div>
+            <div class="record-section hide-el">
+                <div class="record-block">
+                    <h1></h1>
+                    <div class="record-list">
+                        <p><span>1 名字1</span><span>00:00:30</span></p>
+                        <p><span>2 名字2</span><span>00:00:40</span></p>
+                        <p><span>3 名字3</span><span>00:00:50</span></p>
+                    </div>
+                    <div class="record-input">
+                        <input type="text" class="record-name" id="record-name" placeholder="請輸入您的名字">
+                        <button type="button" class="record-btn" id="record-confirm">確定</button>
+                        <button type="button" class="record-btn" id="record-cancel">取消</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <nav class="nav-bar">
+            <div class="menu-logo">
+                <img src="img/util/logo.png" alt="logo">
+                <p class="nav-name"><span>台北市文山區順興社區發展協會</span><span>智遊發揮桌遊</span></p>
+            </div>
+            <div class="menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <div class="menu-block">
+                <a href="#list-process-content" class="menu-btn toggle-btn">創作過程</a>
+                <a href="#list-intro-content" class="menu-btn toggle-btn">遊戲介紹</a>
+                <a href="#list-structure-content" class="menu-btn toggle-btn">遊戲架構</a>
+                <a href="#list-card-content" class="menu-btn toggle-btn">遊戲配件</a>
+                <a href="#list-people-content" class="menu-btn toggle-btn">創作成員</a>
+                <a href="#list-partner-content" class="menu-btn toggle-btn">巡迴單位</a>
+                <a href="https://forms.gle/cQTn64QWAb3Hkoud7" target="_blank" class="toggle-btn">與我聯絡</a>
+            </div>
+            <a href="https://forms.gle/cQTn64QWAb3Hkoud7" target="_blank" class="bar-btn">與我聯絡<svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" fill="rgba(71,46,117,1)"/></svg></a>
+            <a href="#list-partner-content" class="menu-btn bar-btn">巡迴單位</a>
+            <a href="#list-people-content" class="menu-btn bar-btn">創作成員</a>
+            <a href="#list-card-content" class="menu-btn bar-btn">遊戲配件</a>
+            <a href="#list-structure-content" class="menu-btn bar-btn">遊戲架構</a>
+            <a href="#list-intro-content" class="menu-btn bar-btn">遊戲介紹</a>
+            <a href="#list-process-content" class="menu-btn bar-btn">創作過程</a>
+        </nav>
+        <div class="main-container">
+            <div class="content-lists">
+                <div class="list-content list-process-content" id="list-process-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #C02A22; --shadow: #C02A2215;"></div>
+                        <div class="animation-element fade-left" style="--color: #C02A22; --shadow: #C02A2215;"></div>
+                        <p class="animation-element fade-in">創作過程</p>
+                    </div>
+                    <div class="process-slider-block">
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #49ACC5;">6. 鄰里經驗分享</div>
+                            <img src="./img/process/process6.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #C02A22;">1. 桌遊發想討論</div>
+                            <img src="./img/process/process1.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #F69444;">2. 社區資源盤點</div>
+                            <img src="./img/process/process2.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #EEE144;">3. 青銀手作創意</div>
+                            <img src="./img/process/process3.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #ABE745;">4. 遊戲試玩修正</div>
+                            <img src="./img/process/process4.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #48CDAD;">5. 社區桌遊師認證</div>
+                            <img src="./img/process/process5.jpg">
+                        </div><div class="process-slide">
+                            <div class="process-title" style="background-color: #49ACC5;">6. 鄰里經驗分享</div>
+                            <img src="./img/process/process6.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #C02A22;">1. 桌遊發想討論</div>
+                            <img src="./img/process/process1.jpg">
+                        </div>
+                        <div class="process-slide">
+                            <div class="process-title" style="background-color: #F69444;">2. 社區資源盤點</div>
+                            <img src="./img/process/process2.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-content list-intro-content" id="list-intro-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #F69444; --shadow: #F6944415;"></div>
+                        <div class="animation-element fade-left" style="--color: #F69444; --shadow: #F6944415;"></div>
+                        <p class="animation-element fade-in">遊戲介紹</p>
+                    </div>
+                    <div class="intro-section">
+                        <img src="./img/util/circles.png" class="circles animation-element fade-right">
+                        <div class="intro-card-section">
+                            <div class="intro-card animation-element fade-right">
+                                <h1>簡介</h1>
+                                <p>遊戲是以「<span class="highlight-span">台北市文山區順興社區</span>」的地貌環境為主體，搭配在地人、文、地、產、景之特色，捲動社區居民發想設計、手作創藝；取名「<span class="highlight-span">順興智遊發揮</span>」意表集結居民智慧，創思共力製成獨一無二的桌上遊戲。</p>
+                            </div>
+                            <div class="intro-card animation-element fade-left">
+                                <h1>目標</h1>
+                                <p>型塑社區<span class="highlight-span">青橘銀交流與學習</span>的共融文化，將跨世代內涵的經驗底蘊，勾勒社區營造的軌跡；透過富趣味、具教育、有邏輯的設計，深化玩家印象並<span class="highlight-span">體悟社區之美</span>，達到在地堆廣、價值再造與健康促進之綜效。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-content list-structure-content" id="list-structure-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #EEE144; --shadow: #EEE14415;"></div>
+                        <div class="animation-element fade-left" style="--color: #EEE144; --shadow: #EEE14415;"></div>
+                        <p class="animation-element fade-in">遊戲架構</p>
+                    </div>
+                    <div class="structure-list">
+                        <p class="animation-element fade-right">讓玩家有機會<span>「選擇」</span></p>
+                        <p class="animation-element fade-right">每個選擇都為<span>「想贏」</span></p>
+                        <p class="animation-element fade-right">因為想贏做出<span>「預測」</span></p>
+                        <p class="animation-element fade-right">根據預測做出<span>「判斷」</span></p>
+                    </div>
+                    <img src="./img/util/hex.png" alt="game-structure" class="animation-element fade-left">
+                </div>
+                <div class="list-content list-card-content" id="list-card-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #ABE745; --shadow: #ABE74515;"></div>
+                        <div class="animation-element fade-left" style="--color: #ABE745; --shadow: #ABE74515;"></div>
+                        <p class="animation-element fade-in">遊戲配件</p>
+                    </div>
+                    <div class="card-block">
+                        <div class="card-section" id="attraction" data-num="17">
+                            <img class="card" src="./img/card/attraction_back.png">
+                            <img class="card" src="./img/card/attraction/attraction1.png">
+                        </div>
+                        <div class="card-section" id="share" data-num="17">
+                            <img class="card" src="./img/card/share_back.png">
+                            <img class="card" src="./img/card/share/share1.png">
+                        </div>
+                        <div class="card-section" id="think" data-num="20">
+                            <img class="card" src="./img/card/think_back.png">
+                            <img class="card" src="./img/card/think/think1.png">
+                        </div>
+                        <div class="card-section" id="obstacle" data-num="10">
+                            <img class="card" src="./img/card/obstacle_back.png">
+                            <img class="card" src="./img/card/obstacle/obstacle1.png")>
+                        </div>
+                        <div class="card-section" id="heart" data-num="4">
+                            <img class="card" src="./img/card/heart_back.png">
+                            <img class="card" src="./img/card/heart/heart1.png")>
+                        </div>
+                    </div>
+                </div>
+                <div class="list-content list-people-content" id="list-people-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #48CDAD; --shadow: #48CDAD15;"></div>
+                        <div class="animation-element fade-left" style="--color: #48CDAD; --shadow: #48CDAD15;"></div>
+                        <p class="animation-element fade-in">創作成員</p>
+                    </div>
+                    <div class="creator-card animation-element fade-left" style="margin-top: 0;">
+                        <div class="creator-img">
+                            <img src="./img/creator/creator1.jpg">
+                        </div>
+                        <div class="creator-words">
+                            <h1>單連城 <span>理事長</span></h1>
+                            <p>各位老師、創作桌遊的同學們，由於你們的付出和努力，創造出這麼棒的桌上遊戲，展現<span class="highlight-span">順興社區的生命力與韌性</span>，非常謝謝。</p>
+                        </div>
+                    </div>
+                    <div class="member-card-row">
+                        <div class="member-card">
+                            <div class="member-front">
+                                <div class="member-img"></div>
+                                <div class="member-words"></div>
+                            </div>
+                            <div class="member-back">
+                                <div class="member-img"></div>
+                                <div class="member-words"></div>
+                            </div>
+                        </div>
+                        <div class="member-card">
+                            <div class="member-front">
+                                <div class="member-img"></div>
+                                <div class="member-words"></div>
+                            </div>
+                            <div class="member-back">
+                                <div class="member-img"></div>
+                                <div class="member-words"></div>
+                            </div>
+                        </div>
+                        <div class="page-btn" id="member-back-btn">
+                            <img src="./img/arrow-left.svg" alt="arrow-left">
+                        </div>
+                        <div class="page-btn" id="member-next-btn">
+                            <img src="./img/arrow-right.svg" alt="arrow-right">
+                        </div>
+                    </div>
+                </div>
+                <div class="list-content list-partner-content" id="list-partner-content">
+                    <div class="list-title">
+                        <div class="animation-element fade-right" style="--color: #49ACC5; --shadow: #49ACC515;"></div>
+                        <div class="animation-element fade-left" style="--color: #49ACC5; --shadow: #49ACC515;"></div>
+                        <p class="animation-element fade-in">巡迴單位</p>
+                    </div>
+                    <div class="partner-block animation-element fade-up"></div>
+                    <div class="partner-btn-block">
+                        <div class="partner-btn" id="partner-back-btn">上一頁</div>
+                        <div class="partner-btn" id="partner-next-btn">下一頁</div>
+                    </div>
+                </div>
+                <div class="illus-block">
+                    <img class="illus-img" src="./img/util/logo.png">
+                    <h1>順興社區</h1>
+                </div>
+            </div>
+            <div class="back-top" id="back-top">↑</div>
+        </div>
+        <footer class="footer-block">
+            <div class="footer-bg"></div>
+            <div class="footer-bg"></div>
+            <div class="footer-section info-section">
+                <h1>台北市文山區<wbr>順興社區發展協會</h1>
+                <p>地址：台北市文山區興隆路四段165巷11號</p>
+                <p>電話：(02) 2939-6133 單社工</p>
+            </div>
+            <div class="footer-section slogan-section">
+                <p>安老扶幼，協助弱勢</p>
+                <p>全心打造，福利順興</p>
+            </div>
+            <div class="footer-section social-section">
+                <a href="line://ti/p/%40tga1632x" target="_blank">LINE<svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" fill="rgba(255, 255, 255, 1)"/></svg></a>
+                <a href="https://www.facebook.com/sxfj07" target="_blank">FB<svg viewBox="0 0 24 24" width="24" height="24"><path fill="none" d="M0 0h24v24H0z"/><path d="M10 6v2H5v11h11v-5h2v6a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h6zm11-3v8h-2V6.413l-7.793 7.794-1.414-1.414L17.585 5H13V3h8z" fill="rgba(255, 255, 255, 1)"/></svg></a>
+                <span></span>
+                <img src="./img/util/line_qrcode.png">
+                <img src="./img/util/fb_qrcode.png">
+            </div>
+        </footer>
+        <div class="random-card-block">
+            <div class="random-card">
+                <div class="random-front"></div>
+                <div class="random-back"></div>
+            </div>
+        </div>
+        <div class="loader">
+            <img src="./img/util/logo.png">
+            <div class="wrapper">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+                <div class="shadow"></div>
+            </div>
+        </div>
+    </body>
+    <script src="./node_modules/jquery/dist/jquery.min.js"></script>
+    <script>
+        $(function(){
+            $(".loader").delay(1800).fadeOut();
+        });
+
+        $(".process-slider-block").mouseover(function(){
+            $(this).css({
+                animationPlayState:"paused"
+            });
+        }).mouseout(function(){
+            $(this).css({
+                animationPlayState:"running"
+            });
+        });
+
+        $("#back-top").on("click", function(){
+            $("html, body").animate({
+                scrollTop:0
+            }, 1500);
+        });
+
+        $(".menu-logo").on("click", function(){
+            $("html, body").animate({
+                scrollTop:0
+            }, 1500);
+        });
+    </script>
+    <script src="puzzle.js"></script>
+    <script src="creator.js"></script>
+    <script src="card.js"></script>
+    <script src="menu.js"></script>
+    <script src="scroll.js"></script>
+    <script src="partner.js"></script>
+</html>
