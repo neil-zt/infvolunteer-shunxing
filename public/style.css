@@ -1280,6 +1280,7 @@ body{
 .social-section img{
     width: 80px;
     height: 80px;
+    border-radius: 7px;
 }
 .random-card-block{
     width: 100vw;
