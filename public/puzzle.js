@@ -2,6 +2,9 @@ $(".hide-el").hide();
 
 $(function(){
     var playTime = 0, clickable = false, cur_page = 1, piece = 0, pieces;
+    const pieceLookup = {
+        3: "easy", 4: "medium", 5: "hard"
+    }
     var title = [
         "1. 選取並點選拼圖難度",
         "2. 點選圖示以開始遊戲",
@@ -312,6 +315,9 @@ $(function(){
             timer(true);
             clickable = false;
             $(".record-section").fadeIn(400);
+            $("#record-name").prop('disabled', false);
+            $("#record-name").val("");
+            $("#record-confirm").fadeIn(200);
             var record_title;
             if(piece == 3){
                 record_title = "簡單- " + t_str;
@@ -323,6 +329,9 @@ $(function(){
                 record_title = "困難- " + t_str;
             }
             $(".record-block h1").text(record_title);
+            console.log("before call");
+            window.displayScores(pieceLookup[piece]);
+
             return true;
         }
         else{
@@ -371,9 +380,10 @@ $(function(){
             t_str = hours + ' : ' + minutes + ' : ' + seconds;
 
             $("#time").text("時間 | " + t_str);
-            playTime++;
+            playTime += 0.1;
+            playTime = parseFloat(playTime.toFixed(1));
 
-            timeId = setTimeout(function(){ timer(); }, 1000);
+            timeId = setTimeout(function(){ timer(); }, 100);
         }
     }
 
@@ -482,6 +492,15 @@ $(function(){
             $("#record-name").css("color", "red").val("您尚未輸入名稱！").delay(1200).queue(function(){
                 $(this).css("color", "black").val("").dequeue();
             });
+        }else{
+            const scoreObject = {
+                isNotScanned: true,
+                time: playTime,
+                name: $("#record-name").val().trim(),
+                recordTime: (new Date()).toISOString(),
+                level: pieceLookup[piece]
+            };
+            window.scoreObject = scoreObject;
         }
     });
 

@@ -1,5 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!--
+        This page contains the instructions for setting up 
+        Firebase JavaScript library through Google's CDN 
+        https://firebase.google.com/docs/web/alt-setup
+     -->
     <head>
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -107,20 +112,27 @@
                     <button type="button" class="btn" data-piece="5">困難</button>
                     <span class="puzzle-warn hide-el" id="puzzle-select-warn" style="z-index: 650;">請先選擇難度！</span>
                     <span class="puzzle-warn hide-el" id="puzzle-restart-warn" style="z-index: 650;">請點選重新開始！</span>
+                    <span class="puzzle-warn hide-el" id="puzzle-upload-warn" style="z-index: 650;">正在上傳成績！</span>
                 </div>
             </div>
             <div class="record-section hide-el">
                 <div class="record-block">
                     <h1></h1>
                     <div class="record-list">
-                        <p><span>1 名字1</span><span>00:00:30</span></p>
-                        <p><span>2 名字2</span><span>00:00:40</span></p>
-                        <p><span>3 名字3</span><span>00:00:50</span></p>
+                        <div id="record-list-0"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-1"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-2"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-3"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-4"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-5"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-6"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-7"><span>名字1</span><span>00:00:30</span></div>
+                        <div id="record-list-8"><span>名字1</span><span>00:00:30</span></div>
                     </div>
                     <div class="record-input">
                         <input type="text" class="record-name" id="record-name" placeholder="請輸入您的名字">
                         <button type="button" class="record-btn" id="record-confirm">確定</button>
-                        <button type="button" class="record-btn" id="record-cancel">取消</button>
+                        <button type="button" class="record-btn" id="record-cancel">關閉</button>
                     </div>
                 </div>
             </div>
@@ -396,4 +408,79 @@
     <script src="menu.js"></script>
     <script src="scroll.js"></script>
     <script src="partner.js"></script>
+
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
+        import { getFirestore, collection, getDocs, query, orderBy, limit, addDoc, where } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+        const firebaseConfig = {
+            apiKey: "AIzaSyD2teUA3fEtTMv63p6Ka9u_mqIdkU8QmCI",
+            authDomain: "shunxing-game.firebaseapp.com",
+            projectId: "shunxing-game",
+            storageBucket: "shunxing-game.appspot.com",
+            messagingSenderId: "720235381490",
+            appId: "1:720235381490:web:dfbe0f87c2b8f941e0c66b",
+            measurementId: "G-EEL0Y1RQT9"
+        };
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore();
+
+        const scores = {
+            easy: [], medium: [], hard: [], isNotScanned: true
+        }
+
+        async function loadScore(level, displayScores=false){
+            const allScores = [];
+            const scoresCollectionRef = collection(db, "scores");
+            const q = query(scoresCollectionRef, where("level", "==", level), orderBy("time"), limit(9));
+            const scoresSnap = await getDocs(q);
+            scoresSnap.forEach(scoreSnap => {
+                allScores.push(scoreSnap.data());
+            });
+
+            scores[level] = allScores;
+            window.loadedScores = scores;
+            displayScores && window.displayScores(level);
+        }
+
+        async function uploadData(scoreObject){
+            $("#record-name").val("正在上傳成績...");
+            $("#record-name").prop('disabled', true);
+            $("#record-confirm").fadeOut(200);
+            await addDoc(collection(db, "scores"), {
+                recordTime: scoreObject.recordTime,
+                name: scoreObject.name,
+                level: scoreObject.level,
+                recordTime: scoreObject.recordTime,
+                time: scoreObject.time - 0.1
+            }).then(() => { 
+                $("#record-name").val("成績上傳完成");
+                loadScore(scoreObject.level, true);
+            })
+        }
+
+        window.displayScores = (level) => {
+            console.log("in call");
+            const scoreOfLevel = JSON.parse(JSON.stringify(scores[level]));
+            for(let i = scoreOfLevel.length; i < 9; i++){
+                scoreOfLevel.push({name: "😱 尚無排名"});
+            }
+            for(let i = 0; i < 9; i++){
+                
+                $(`#record-list-${i}`).html(`
+                    <span>${ i + 1 } ${scoreOfLevel[i].name}</span><span>${ scoreOfLevel[i].time?.toFixed(1) || "--.-" } 秒</span>
+                `);
+            }
+        }
+
+        loadScore("easy");
+        loadScore("medium");
+        loadScore("hard");
+
+        setInterval(() => {
+            if(window?.scoreObject?.isNotScanned){
+                uploadData(window.scoreObject);
+                window.scoreObject.isNotScanned = false;
+            }
+        }, 500);
+    </script>
 </html>

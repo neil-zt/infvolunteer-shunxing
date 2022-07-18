@@ -250,10 +250,8 @@
     .record-list{
         width: 85%;
         height: 50%;
-        padding: 0 10px;
     }
-    .record-list p{
-        width: 98%;
+    .record-list div{
         padding: 0 10px;
         font-size: 18px;
     }
@@ -545,11 +543,9 @@
     .record-list{
         width: 85%;
         height: 50%;
-        padding: 0 10px;
     }
-    .record-list p{
-        width: 98%;
-        padding: 0 10px;
+    .record-list div{
+        padding: 0 5px;
         font-size: 18px;
     }
     .record-input{
@@ -974,8 +970,7 @@
         height: 50%;
         padding: 0 8px;
     }
-    .record-list p{
-        width: 98%;
+    .record-list div{
         padding: 0 6px;
         font-size: 18px;
     }
