@@ -360,39 +360,44 @@ body{
 .record-list{
     font-size: 20px;
     line-height: 2.4;
-    letter-spacing: 4px;
-    width: 80%;
+    padding: 3px 6px;
+    width: 90%;
+    max-width: 600px;
     height: 45%;
     background: #caaefb60;
     border-radius: 6px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 0 20px;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
-.record-list p{
-    width: 95%;
+.record-list div{
     border-radius: 8px;
     margin: 4px 0;
     padding: 0 20px;
     color: var(--theme-color);
+    display: flex;
 }
-.record-list p:nth-child(1){
+.record-list div:nth-child(1){
     background-color: rgba(255, 255, 255, .8);
 }
-.record-list p:nth-child(2){
+.record-list div:nth-child(2){
     background-color: rgba(255, 255, 255, .52);
 }
-.record-list p:nth-child(3){
+.record-list div:nth-child(3){
     background-color: rgba(255, 255, 255, .24);
 }
-.record-list p span:nth-child(1){
-    float: left;
+.record-list div span{
+    display: block;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
-.record-list p span:nth-child(2){
-    float: right;
-    font-weight: 600;
+.record-list div span:nth-child(1){
+    width: 100%;
+}
+.record-list div span:nth-child(2){
+    width: 100%;
+    min-width: 130px;
+    text-align: right;
 }
 .record-input{
     width: 90%;
