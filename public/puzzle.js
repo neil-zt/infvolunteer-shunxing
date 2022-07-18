@@ -370,9 +370,9 @@ $(function(){
             clearTimeout(timeId);
         }
         else{
-            var hours = Math.floor(playTime / 3600),
-                minutes = Math.floor((playTime - (hours * 3600)) / 60),
-                seconds = playTime - (hours * 3600) - (minutes * 60);
+            var hours = Math.floor(playTime / 3600).toFixed(0),
+                minutes = Math.floor((playTime - (hours * 3600)) / 60).toFixed(0),
+                seconds = (playTime - (hours * 3600) - (minutes * 60)).toFixed(1);
 
             if (hours   < 10) {hours   = "0" + hours;}
             if (minutes < 10) {minutes = "0" + minutes;}

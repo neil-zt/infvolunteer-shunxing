@@ -124,10 +124,6 @@
                         <div id="record-list-2"><span>名字1</span><span>00:00:30</span></div>
                         <div id="record-list-3"><span>名字1</span><span>00:00:30</span></div>
                         <div id="record-list-4"><span>名字1</span><span>00:00:30</span></div>
-                        <div id="record-list-5"><span>名字1</span><span>00:00:30</span></div>
-                        <div id="record-list-6"><span>名字1</span><span>00:00:30</span></div>
-                        <div id="record-list-7"><span>名字1</span><span>00:00:30</span></div>
-                        <div id="record-list-8"><span>名字1</span><span>00:00:30</span></div>
                     </div>
                     <div class="record-input">
                         <input type="text" class="record-name" id="record-name" placeholder="請輸入您的名字">
@@ -431,7 +427,7 @@
         async function loadScore(level, displayScores=false){
             const allScores = [];
             const scoresCollectionRef = collection(db, "scores");
-            const q = query(scoresCollectionRef, where("level", "==", level), orderBy("time"), limit(9));
+            const q = query(scoresCollectionRef, where("level", "==", level), orderBy("time"), limit(5));
             const scoresSnap = await getDocs(q);
             scoresSnap.forEach(scoreSnap => {
                 allScores.push(scoreSnap.data());
@@ -461,13 +457,22 @@
         window.displayScores = (level) => {
             console.log("in call");
             const scoreOfLevel = JSON.parse(JSON.stringify(scores[level]));
-            for(let i = scoreOfLevel.length; i < 9; i++){
-                scoreOfLevel.push({name: "😱 尚無排名"});
+            for(let i = scoreOfLevel.length; i < 5; i++){
+                scoreOfLevel.push({name: "😇 尚無排名"});
             }
-            for(let i = 0; i < 9; i++){
-                
+            for(let i = 0; i < 5; i++){
+                let timeDisplayString = "";
+                if(scoreOfLevel[i].time){
+                    const minutes = Math.floor(scoreOfLevel[i].time / 60);
+                    let seconds = (scoreOfLevel[i].time % 60).toFixed(1);
+                    if(seconds.length === 1) seconds = "0" + seconds;
+
+                    timeDisplayString = `${minutes} 分 ${seconds} 秒`;
+                }
+
+
                 $(`#record-list-${i}`).html(`
-                    <span>${ i + 1 } ${scoreOfLevel[i].name}</span><span>${ scoreOfLevel[i].time?.toFixed(1) || "--.-" } 秒</span>
+                    <span>${ i + 1 }&nbsp;&nbsp;${scoreOfLevel[i].name}</span><span>${timeDisplayString}</span>
                 `);
             }
         }
