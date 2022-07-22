@@ -403,11 +403,9 @@
     <script src="card.js"></script>
     <script src="menu.js"></script>
     <script src="scroll.js"></script>
-    <script src="partner.js"></script>
-
     <script type="module">
         import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-app.js';
-        import { getFirestore, collection, getDocs, query, orderBy, limit, addDoc, where } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
+        import { getFirestore, collection, getDocs, query, orderBy, limit, addDoc, where, doc, getDoc } from 'https://www.gstatic.com/firebasejs/9.8.4/firebase-firestore.js';
         const firebaseConfig = {
             apiKey: "AIzaSyD2teUA3fEtTMv63p6Ka9u_mqIdkU8QmCI",
             authDomain: "shunxing-game.firebaseapp.com",
@@ -419,6 +417,9 @@
         };
         const app = initializeApp(firebaseConfig);
         const db = getFirestore();
+
+
+        // Puzzle score stuff
 
         const scores = {
             easy: [], medium: [], hard: [], isNotScanned: true
@@ -487,5 +488,19 @@
                 window.scoreObject.isNotScanned = false;
             }
         }, 500);
+
+
+        // Partner activities stuff
+
+        async function getActivities(){
+            const activitySnap = await getDoc(doc(db, "content", "activities"));
+            if(activitySnap.exists()){
+                window.activities = activitySnap.data().activities || [];
+            }
+        }
+
+        getActivities();
+
     </script>
+    <script src="partner.js" type="module"></script>
 </html>
